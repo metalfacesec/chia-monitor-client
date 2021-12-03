@@ -1,7 +1,0 @@
-{
-	"main_node": true,
-	"wallet_private_key": "/home/<USERNAME>/.chia/mainnet/config/ssl/wallet/private_wallet.key",
-	"wallet_private_crt": "/home/<USERNAME>/.chia/mainnet/config/ssl/wallet/private_wallet.crt",
-	"chia_rpc_ip": "127.0.0.1",
-	"chia_rpc_port": 9256
-}
