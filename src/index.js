@@ -41,6 +41,15 @@ async function getWallets() {
 		let balanceInfo = await wallet.getWalletBalance(walletResponse.wallets[i].id);
 		walletBalances.push(balanceInfo.wallet_balance);
 	}
+
+	console.log("Sending wallet info");
+	axios.post(`http://${serverIP}:${serverPort}/log_wallet_info`, { wallets: walletBalances })
+	.then(response => {
+		console.log(response.data);
+	})
+	.catch(err => {
+		console.log('Err: ' + err);
+	});
 }
 
 function sendHeartbeat() {
