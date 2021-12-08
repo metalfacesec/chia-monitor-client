@@ -10,14 +10,6 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 let wallet = new Wallet();
 
-async function getPublicKeys() {
-	let publicKeys = await wallet.getPublicKeys();
-	if (publicKeys === null || typeof publicKeys !== 'object' || !publicKeys.success) {
-		return [];
-	}
-	return publicKeys.public_key_fingerprints;
-}
-
 async function getWallets() {
 	let walletResponse = await wallet.getWallets();
 
@@ -91,12 +83,6 @@ async function init() {
 
 	setInterval(getWallets, THIRTY_MINUTES);
 	getWallets();
-
-	let publicKeys = await getPublicKeys();
-	if (publicKeys.length) {
-		let privateKeys = await wallet.getPrivateKey(publicKeys[0]);
-		console.log(privateKeys)
-	}
 }
 
 init();
