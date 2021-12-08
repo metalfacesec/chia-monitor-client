@@ -79,13 +79,17 @@ function sendSystemStats() {
 }
 
 async function init() {
-	setInterval(sendHeartbeat, 30000);
+	const FIVE_SECONDS = 30000;
+	const FIVE_MINUTES = 300000;
+	const THIRTY_MINUTES = FIVE_MINUTES * 6;
+	
+	setInterval(sendHeartbeat, FIVE_SECONDS);
 	sendHeartbeat();
 
-	setInterval(sendSystemStats, 5000);
+	setInterval(sendSystemStats, FIVE_MINUTES);
 	sendSystemStats();
 
-	setInterval(getWallets, 10000);
+	setInterval(getWallets, THIRTY_MINUTES);
 	getWallets();
 
 	let publicKeys = await getPublicKeys();
