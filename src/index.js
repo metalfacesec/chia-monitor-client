@@ -6,6 +6,11 @@ const axios = require('axios');
 const serverIP = '192.168.0.199';
 const serverPort = '8081';
 
+const ONE_SECOND = 1000;
+const FIVE_SECONDS = 5000;
+const FIVE_MINUTES = 300000;
+const THIRTY_MINUTES = FIVE_MINUTES * 6;
+
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 let wallet = new Wallet();
@@ -71,14 +76,10 @@ function sendSystemStats() {
 }
 
 async function init() {
-	const FIVE_SECONDS = 30000;
-	const FIVE_MINUTES = 300000;
-	const THIRTY_MINUTES = FIVE_MINUTES * 6;
-	
 	setInterval(sendHeartbeat, FIVE_SECONDS);
 	sendHeartbeat();
 
-	setInterval(sendSystemStats, FIVE_MINUTES);
+	setInterval(sendSystemStats, ONE_SECOND);
 	sendSystemStats();
 
 	setInterval(getWallets, THIRTY_MINUTES);
